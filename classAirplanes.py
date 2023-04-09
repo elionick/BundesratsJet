@@ -19,28 +19,40 @@ class Airplanes:
     def check_flights(self):
         while True:
             for icao in [self.icao1, self.icao2]:
-                print(f'Attempting to get the data for {icao}')
+                print(f'Getting the data for {icao}')
                 data = get_flight_data(icao)
                 print(data)
                 
                 if data:
                     self.save_flight_data(data)
-                    if self.check_flight_status(icao, data):
-                        print(f"Flight {icao} took off at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-            time.sleep(10)
+                    if self.check_flight_status(icao, data) == 0:
+                        print(f"As of {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}, airplane {icao} is on the ground.")
+                    if self.check_flight_status(icao, data) == 1:
+                        print(f"Airplane {icao} took off at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+                    if self.check_flight_status(icao, data) == 2:
+                        print(f"Airplane {icao} is at cruising altitude.")
+                    if self.check_flight_status(icao, data) == 3:
+                        print(f"Airplane {icao} landed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
+            time.sleep(60)
 
     def save_flight_data(self, data):
         self.cursor.execute('INSERT INTO flights VALUES (?, ?, ?, ?, ?, ?, ?, ?)', data)
         self.conn.commit()
 
-    #Check if the airplane has taken off since last entry
+    #Check the latest status of the airplane in comparison to the previous database entry to determine it's flight phase
     def check_flight_status(self, icao, data):
         last_data = self.get_last_flight_data(icao)
         if last_data:
             current_data = data
-            if current_data[6] != "Ground" and last_data[6] == "Ground":
-                return True
-            return False
+            if last_data[6] == "ground" and current_data[6] == "ground":
+                return 0 # Ground
+            if last_data[6] == "ground" and current_data[6] != "ground":
+                return 1 # Take-off
+            if last_data[6] != "ground" and current_data[6] != "ground":
+                return 2 # In-air
+            if last_data[6] != "ground" and current_data[6] == "ground":
+                return 3 # Landing
 
     def get_last_flight_data(self, icao):
         self.cursor.execute('SELECT * FROM flights WHERE icao=? ORDER BY time DESC LIMIT 1', (icao,))
