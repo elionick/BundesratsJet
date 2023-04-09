@@ -1,7 +1,9 @@
-from classAirplane import *
+from classAirplanes import Airplanes
 
-def main():
-    pass
+icao1 = "4b7f4c"
+icao2 = "4b7fd4"
+db_path = "flights.db"
 
-if __name__ == '__main__':
-    main()
+airplanes = Airplanes(icao1, icao2, db_path)
+
+airplanes.check_flights()
