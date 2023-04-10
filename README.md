@@ -2,18 +2,18 @@
 
 ## Latest changes:
 
-### v0
+### v0 **April 09, 2023**
 * Obligatory "Hello World"
 * Setup of structure and dependencies
 
-### v1
+### v1 **April 09, 2023**
 * Implementation of first API calls: Get current data
 * Data saved in SQLight
 
-### v1.2
+### v1.2 **April 09, 2023**
 * First attempt of filtering data and classify different states (only half worked)
 
-### v1.3
+### v1.3 **April 10, 2023**
 * First implementation of Twitter API
 ---
  
