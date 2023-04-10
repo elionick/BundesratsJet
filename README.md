@@ -13,6 +13,8 @@
 ### v1.2
 * First attempt of filtering data and classify different states (only half worked)
 
+### v1.3
+* First implementation of Twitter API
 ---
  
 ## ToDos (to be expanded)
