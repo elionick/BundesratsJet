@@ -1,5 +1,14 @@
 # Just trying out this markdown stuff
 
+## Intro
+BundesratsJet
+
+This is a Python project that tracks the flight status of the jets used by the Swiss Federal Council (as well as other politicians) using their Mode S hex code (ICAO) and the ADS-B Exchange API. The project includes a simple database for storing the flight data and a class for tracking multiple airplanes and detecting their flight status (ground, take-off, in-air, or landing).
+
+The project includes a simple example script that tracks the flight status of two airplanes and broadcasts events to a Twitter account via the Twitter API.
+
+**This is still very early stage**
+
 ## Latest changes:
 
 ### v0 **April 09, 2023**
