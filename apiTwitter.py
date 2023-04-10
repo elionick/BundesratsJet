@@ -3,11 +3,6 @@ from os import access
 import tweepy
 from env_vars import *
 
-# access_key = "hQAKOdouVEDDROoXFs30nABUm"
-# access_secret = "PnB15dZIRy2pVyBeAY2n3csU4c2USFzYKT73f9snZHLosnbl7Q"
-# consumer_key = "1578508197941444611-l8hvW3GOXeDXJixnIqQQIH4lVm6fjm"
-# consumer_secret = "aCceXsTIsBJZpyOGpb0Gj7mosk8GeBKSmJlvSM5XhMnBg"
-
 def update_Twitter_status(status):
     # Authenticate to Twitter
     auth = tweepy.OAuthHandler(apiTwitter_access_key, apiTwitter_access_secret)
