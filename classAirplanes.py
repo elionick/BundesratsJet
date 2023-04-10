@@ -2,6 +2,7 @@ import time
 import sqlite3
 from datetime import datetime, timezone
 from apiADSBexhange import get_flight_data
+from apiTwitter import update_Twitter_status
 
 class Airplanes:
     
@@ -25,14 +26,18 @@ class Airplanes:
                 
                 if data:
                     self.save_flight_data(data)
-                    if self.check_flight_status(icao, data) == 0:
+                    if self.check_flight_status(icao, data) == 0: # Ground
                         print(f"As of {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}, airplane {icao} is on the ground.")
-                    if self.check_flight_status(icao, data) == 1:
+                        #update_Twitter_status(f"As of {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}, airplane {icao} is on the ground.")
+                    if self.check_flight_status(icao, data) == 1: # Take-off
                         print(f"Airplane {icao} took off at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-                    if self.check_flight_status(icao, data) == 2:
+                        #update_Twitter_status(f"Airplane {icao} took off at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+                    if self.check_flight_status(icao, data) == 2: # In-Air
                         print(f"Airplane {icao} is at cruising altitude.")
-                    if self.check_flight_status(icao, data) == 3:
+                        #update_Twitter_status(f"Airplane {icao} is at cruising altitude.")
+                    if self.check_flight_status(icao, data) == 3: # Landing
                         print(f"Airplane {icao} landed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+                        #update_Twitter_status(f"Airplane {icao} landed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
             time.sleep(60)
 
