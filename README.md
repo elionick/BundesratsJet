@@ -28,6 +28,7 @@ The project includes a simple example script that tracks the flight status of tw
 ### v1.4 **April 15, 2023**
 * Bug fix, changed DB query for "last entry" (had to offset by 1)
 * Get AirportInfo based on coordinates
+* Implement flight path tracker for active planes in new table for future visualisation
 ---
  
 ## ToDos (to be expanded)
