@@ -3,6 +3,7 @@ import sqlite3
 from datetime import datetime, timezone
 from apiADSBexhange import get_flight_data
 from apiTwitter import update_Twitter_status
+from apiAirportData import *
 
 class Airplanes:
     
@@ -27,7 +28,11 @@ class Airplanes:
                 if data:
                     self.save_flight_data(data)
                     status = self.check_flight_status(icao, data)
-
+                    print(data)
+                    airport = get_airport_by_coordinates(data[4], data[5])
+                    airport_data = get_airport_data(airport[0])
+                    print(airport_data)
+                    
                     print(status)
                     if status == 0: # Ground
                         print(f"Airplane {icao} is on the ground.")

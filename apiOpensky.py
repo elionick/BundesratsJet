@@ -15,5 +15,3 @@ api = OpenSkyApi(api_user,api_password)
 departures = api.get_departures_by_airport(airport_code, begin_time, end_time)
 
 pprint(departures)
-
-
