@@ -6,10 +6,9 @@ from apiTwitter import update_Twitter_status
 
 class Airplanes:
     
-    def __init__(self, icao1, icao2, db_path):
-        self.icao1 = icao1
-        self.icao2 = icao2
-        self.db_path = db_path
+    def __init__(self, icao_list):
+        self.icao_list = icao_list
+        self.db_path = "flights.db"
         self.conn = sqlite3.connect(self.db_path)
         self.cursor = self.conn.cursor()
         self.create_table()
@@ -19,25 +18,28 @@ class Airplanes:
 
     def check_flights(self):
         while True:
-            for icao in [self.icao1, self.icao2]:
+            for icao in self.icao_list:
                 print(f'Getting the data for {icao}')
                 data = get_flight_data(icao)
-                print(data)
-                
+                #Print data to inspect
+                #print(data)
+
                 if data:
                     self.save_flight_data(data)
-                    if self.check_flight_status(icao, data) == 0: # Ground
-                        print(f"As of {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}, airplane {icao} is on the ground.")
-                        #update_Twitter_status(f"As of {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}, airplane {icao} is on the ground.")
-                    if self.check_flight_status(icao, data) == 1: # Take-off
-                        print(f"Airplane {icao} took off at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+                    status = self.check_flight_status(icao, data)
+
+                    print(status)
+                    if status == 0: # Ground
+                        print(f"Airplane {icao} is on the ground.")
+                    elif status == 1: # Take-off
+                        print(f"Airplane {icao} just took off")
                         #update_Twitter_status(f"Airplane {icao} took off at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-                    if self.check_flight_status(icao, data) == 2: # In-Air
+                    elif status == 2: # In-Air
                         print(f"Airplane {icao} is at cruising altitude.")
-                        #update_Twitter_status(f"Airplane {icao} is at cruising altitude.")
-                    if self.check_flight_status(icao, data) == 3: # Landing
-                        print(f"Airplane {icao} landed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-                        #update_Twitter_status(f"Airplane {icao} landed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+                    elif status == 3: # Landing
+                        print(f"Airplane {icao} just landed")
+                    else:
+                        None 
 
             time.sleep(60)
 
@@ -47,9 +49,9 @@ class Airplanes:
 
     #Check the latest status of the airplane in comparison to the previous database entry to determine it's flight phase
     def check_flight_status(self, icao, data):
+        current_data = data
         last_data = self.get_last_flight_data(icao)
         if last_data:
-            current_data = data
             print(f"Last altitude: {last_data[6]}, Current altitude: {current_data[6]}")
             if last_data[6] == "ground" and current_data[6] == "ground":
                 return 0 # Ground
@@ -59,6 +61,9 @@ class Airplanes:
                 return 2 # In-air
             elif last_data[6] != "ground" and current_data[6] == "ground":
                 return 3 # Landing
+        else:
+            print('First time tracking this airplane')
+            return None
 
     def get_last_flight_data(self, icao):
         self.cursor.execute('SELECT * FROM flights WHERE icao=? ORDER BY time DESC LIMIT 1 OFFSET 1', (icao,))
