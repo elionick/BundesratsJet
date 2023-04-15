@@ -31,8 +31,8 @@ The project includes a simple example script that tracks the flight status of tw
  
 ## ToDos (to be expanded)
 
-* ~~ Get the classification done properly~~
-* ~~ Combine with past work on Twitter API to notify when event occurs~~
+* ~~Get the classification done properly~~
+* ~~Combine with past work on Twitter API to notify when event occurs~~
 
 * Include a map?
 
