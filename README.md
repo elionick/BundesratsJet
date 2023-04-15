@@ -24,12 +24,16 @@ The project includes a simple example script that tracks the flight status of tw
 
 ### v1.3 **April 10, 2023**
 * First implementation of Twitter API
+
+### v1.4 **April 15, 2023**
+* Bug fix, changed DB query for "last entry" (had to offset by 1)
 ---
  
 ## ToDos (to be expanded)
 
-* Get the classification done properly
-* Combine with past work on Twitter API to notify when event occurs
+~~* Get the classification done properly~~
+~~* Combine with past work on Twitter API to notify when event occurs~~
+
 * Include a map?
 
 * Somehow control how many requests I have left this month?
