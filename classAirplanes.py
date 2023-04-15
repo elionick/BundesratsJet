@@ -15,7 +15,7 @@ class Airplanes:
         self.create_table()
 
     def create_table(self):
-        self.cursor.execute('CREATE TABLE IF NOT EXISTS flights (icao TEXT, registration TEXT, type TEXT, time INTEGER, latitude REAL, longitude REAL, altitude BLOB, groundspeed REAL)')
+        self.cursor.execute('CREATE TABLE IF NOT EXISTS flights (icao TEXT, registration TEXT, type TEXT, time INTEGER, latitude REAL, longitude REAL, altitude TEXT, groundspeed REAL)')
 
     def check_flights(self):
         while True:
@@ -50,17 +50,18 @@ class Airplanes:
         last_data = self.get_last_flight_data(icao)
         if last_data:
             current_data = data
+            print(f"Last altitude: {last_data[6]}, Current altitude: {current_data[6]}")
             if last_data[6] == "ground" and current_data[6] == "ground":
                 return 0 # Ground
-            if last_data[6] == "ground" and current_data[6] != "ground":
+            elif last_data[6] == "ground" and current_data[6] != "ground":
                 return 1 # Take-off
-            if last_data[6] != "ground" and current_data[6] != "ground":
+            elif last_data[6] != "ground" and current_data[6] != "ground":
                 return 2 # In-air
-            if last_data[6] != "ground" and current_data[6] == "ground":
+            elif last_data[6] != "ground" and current_data[6] == "ground":
                 return 3 # Landing
 
     def get_last_flight_data(self, icao):
-        self.cursor.execute('SELECT * FROM flights WHERE icao=? ORDER BY time DESC LIMIT 1', (icao,))
+        self.cursor.execute('SELECT * FROM flights WHERE icao=? ORDER BY time DESC LIMIT 1 OFFSET 1', (icao,))
         data = self.cursor.fetchone()
         if data:
             return data
