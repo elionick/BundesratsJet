@@ -1,3 +1,4 @@
 apiKey.txt
 __pycache__
-geckodriver
+geckodriver.exe
+geckodriver.log
