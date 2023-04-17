@@ -53,7 +53,7 @@ class Airplanes:
                 except Exception as e:
                     print(f'An error occured while processing airplane {icao}: {e}. Potentially the plane has turned off the transponder or the API is down.') 
                                     
-            time.sleep(300)
+            time.sleep(600)
 
     #Section on tracking active flight path
     def start_flight_path(self, icao, data):

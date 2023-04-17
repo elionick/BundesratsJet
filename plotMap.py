@@ -31,7 +31,15 @@ def plot_flight_plan(icao, flight_index):
     middle_lat = sum(coord[0] for coord in coords) / len(coords)
     middle_lon = sum(coord[1] for coord in coords) / len(coords)
 
-    flight_map = folium.Map(location=[middle_lat, middle_lon], zoom_start=6)
+    # Set zoom_start based on number of coordinates
+    if len(coords) <= 12:
+        zoom_start = 6
+    elif len(coords) <= 18:
+        zoom_start = 5
+    else:
+        zoom_start = 4
+
+    flight_map = folium.Map(location=[middle_lat, middle_lon], zoom_start=zoom_start)
 
     # Add a line between the markers to represent the flight path
     folium.PolyLine(coords, color='red').add_to(flight_map)
@@ -64,6 +72,6 @@ def plot_flight_plan(icao, flight_index):
         browser.quit()
         print('Map created successfully')
     except Exception as e:
-        print(f'An error has occured while saving the image')
+        print(f'An error has occured while saving the image. . Error: {e}')
 
     return departure_airport, arrival_airport
