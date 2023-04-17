@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a782e910264f0896bbd70b2d26ae5d16 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_a782e910264f0896bbd70b2d26ae5d16" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a782e910264f0896bbd70b2d26ae5d16 = L.map(
+                "map_a782e910264f0896bbd70b2d26ae5d16",
+                {
+                    center: [45.14030672727272, 7.969983636363637],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d515c1812fca1146d16fd18175cfd1cf = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_a782e910264f0896bbd70b2d26ae5d16);
+        
+    
+            var poly_line_3eae34f9b90a8f1d30ee5e62693e56d5 = L.polyline(
+                [[47.456635, 8.569971], [47.30484, 8.381401], [46.773239, 8.571212], [46.131546, 8.543947], [45.446762, 8.453578], [44.817581, 8.166896], [44.189851, 7.839072], [43.721146, 7.502576], [43.411652, 7.255064], [43.626243, 7.168644], [43.663879, 7.217459]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_a782e910264f0896bbd70b2d26ae5d16);
+        
+    
+            var marker_32a7a5aff511ede5551d3ba4eb4500a5 = L.marker(
+                [47.456635, 8.569971],
+                {}
+            ).addTo(map_a782e910264f0896bbd70b2d26ae5d16);
+        
+    
+            var icon_18b4eb15de295f385230956b3ef0234c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plane", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_32a7a5aff511ede5551d3ba4eb4500a5.setIcon(icon_18b4eb15de295f385230956b3ef0234c);
+        
+    
+        var popup_665f479845864fd5a1999e24355ed780 = L.popup({"autoClose": false, "maxWidth": 500});
+
+        
+            
+                var html_b5ec38ced0ab9438e840adb6e2ea70a6 = $(`<div id="html_b5ec38ced0ab9438e840adb6e2ea70a6" style="width: 100.0%; height: 100.0%;"><strong>Departure: </strong> LSZH - Zürich Airport</div>`)[0];
+                popup_665f479845864fd5a1999e24355ed780.setContent(html_b5ec38ced0ab9438e840adb6e2ea70a6);
+            
+        
+
+        marker_32a7a5aff511ede5551d3ba4eb4500a5.bindPopup(popup_665f479845864fd5a1999e24355ed780)
+        .openPopup();
+
+        
+    
+    
+            var marker_999a2c1c5a228d0cf4da91fc2765fe49 = L.marker(
+                [43.663879, 7.217459],
+                {}
+            ).addTo(map_a782e910264f0896bbd70b2d26ae5d16);
+        
+    
+            var icon_921056a4ce2e745dcbbb0f35353f8400 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plane", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_999a2c1c5a228d0cf4da91fc2765fe49.setIcon(icon_921056a4ce2e745dcbbb0f35353f8400);
+        
+    
+        var popup_78b28518251477f5e84e963ff4c082b5 = L.popup({"autoClose": false, "maxWidth": 400});
+
+        
+            
+                var html_4012ec8f51008d5f7d4453e48c6841db = $(`<div id="html_4012ec8f51008d5f7d4453e48c6841db" style="width: 100.0%; height: 100.0%;"><strong>Arrival: </strong>LFMN - Nice-Côte d'Azur Airport</div>`)[0];
+                popup_78b28518251477f5e84e963ff4c082b5.setContent(html_4012ec8f51008d5f7d4453e48c6841db);
+            
+        
+
+        marker_999a2c1c5a228d0cf4da91fc2765fe49.bindPopup(popup_78b28518251477f5e84e963ff4c082b5)
+        .openPopup();
+
+        
+    
+</script>
+</html>

@@ -2,8 +2,9 @@ import time
 import sqlite3
 from datetime import datetime, timezone
 from apiADSBexhange import get_flight_data
-from apiTwitter import update_Twitter_status
+from apiTwitter import *
 from apiAirportData import *
+from plotMap import *
 
 class Airplanes:
     
@@ -22,39 +23,36 @@ class Airplanes:
         self.cursor.execute('CREATE TABLE IF NOT EXISTS flight_path (flight_id INTEGER, icao TEXT, time INTEGER, latitude REAL, longitude REAL)')
     
     def check_flights(self):
+
         while True:
             for icao in self.icao_list:
                 print(f'Getting the data for {icao}')
-                data = get_flight_data(icao)
-                #Print data to inspect
-                #print(data)
 
-                if data:
-                    self.save_flight_data(data)
-                    status = self.check_flight_status(icao, data)
-                    #print(data)
-                    #airport = get_airport_by_coordinates(data[4], data[5])
-                    #airport_data = get_airport_data(airport[0])
-                    #print(airport_data)
-                    
-                    print(status)
-                    if status == 0: # Ground
-                        print(f"Airplane {icao} is on the ground.")
-                    elif status == 1: # Take-off
-                        print(f"Airplane {icao} just took off")
-                        self.start_flight_path(icao, data)
-                        #update_Twitter_status(f"Airplane {icao} took off at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-                    elif status == 2: # In-Air
-                        print(f"Airplane {icao} is at cruising altitude.")
-                        self.save_flight_path(icao, data)
-                    elif status == 3: # Landing
-                        print(f"Airplane {icao} just landed")
-                        self.save_flight_path(icao, data)
-                        self.stop_flight_path(icao)
-                    else:
-                        None 
+                try:
+                    data = get_flight_data(icao)
 
-                
+                    if data:
+                        self.save_flight_data(data)
+                        status = self.check_flight_status(icao, data)
+                        
+                        if status == 0: # Ground
+                            print(f"Airplane {icao} is on the ground.")
+                        elif status == 1: # Take-off
+                            print(f"Airplane {icao} just took off")
+                            self.start_flight_path(icao, data)
+                        elif status == 2: # In-Air
+                            print(f"Airplane {icao} is at cruising altitude.")
+                            self.save_flight_path(icao, data)
+                        elif status == 3: # Landing
+                            print(f"Airplane {icao} just landed")
+                            self.save_flight_path(icao, data)
+                            self.stop_flight_path(icao)
+                        else:
+                            pass
+
+                except Exception as e:
+                    print(f'An error occured while processing airplane {icao}: {e}. Potentially the plane has turned off the transponder or the API is down.') 
+                                    
             time.sleep(300)
 
     #Section on tracking active flight path
@@ -64,6 +62,15 @@ class Airplanes:
             index = 1
         else:
             index += 1
+        # Save take off spot
+        last_data = self.get_last_flight_data(icao)
+
+        last_timestamp = last_data[3]
+        last_latitude = last_data[4]
+        last_longitude = last_data[5]
+        self.cursor.execute('INSERT INTO flight_path VALUES (?, ?, ?, ?, ?)', (index, icao, last_timestamp, last_latitude, last_longitude))
+        
+        # Save new tracking data
         timestamp = data[3]
         latitude = data[4]
         longitude = data[5]
@@ -82,6 +89,13 @@ class Airplanes:
     def stop_flight_path(self, icao):
         print(f'Stopped tracking flight path for {icao}')
 
+        index = self.get_last_flight_path_index(icao)
+
+        try:
+            airports = plot_flight_plan(icao, index)
+            upload_Twitter_status_with_media(icao, index, airports)
+        except:
+            print('An error has occured')
 
     def get_last_flight_path_index(self, icao):
         self.cursor.execute('SELECT MAX(flight_id) FROM flight_path WHERE icao=?', (icao,))

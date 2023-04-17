@@ -15,9 +15,6 @@ def get_airport_by_coordinates(lat, lon):
     airport_icao = results.find('a').get('href').split('/')[-2].upper()
     airport_name = results.find('h3').text.strip()
     
-    print(f"Airport code: {airport_icao}")
-    print(f"Airport name: {airport_name}")
-
     return airport_icao, airport_name
 
 def get_airport_data(airport_icao):
