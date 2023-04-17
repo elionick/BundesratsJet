@@ -29,6 +29,13 @@ The project includes a simple example script that tracks the flight status of tw
 * Bug fix, changed DB query for "last entry" (had to offset by 1)
 * Get AirportInfo based on coordinates
 * Implement flight path tracker for active planes in new table for future visualisation
+
+### v1.5 **April 17, 2023**
+* Implemented mapping
+* Implemented Twitter Media API
+* Bug fixes
+* First successfull trial end-to-end 
+* Finished MVP
 ---
  
 ## ToDos (to be expanded)
@@ -36,7 +43,7 @@ The project includes a simple example script that tracks the flight status of tw
 * ~~Get the classification done properly~~
 * ~~Combine with past work on Twitter API to notify when event occurs~~
 
-* Include a map?
+* ~~Include a map?~~
 
 * Somehow control how many requests I have left this month?
 * Move to online DB?
