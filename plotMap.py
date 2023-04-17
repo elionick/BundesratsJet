@@ -1,0 +1,70 @@
+import sqlite3
+import folium
+from apiAirportData import *
+import time
+import os
+from selenium import webdriver
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
+
+
+
+def plot_flight_plan(icao, flight_index):
+
+    conn = sqlite3.connect('flights.db')
+    cursor = conn.cursor()
+
+    # flight_index = 1
+    # icao = '3E175B'
+
+    cursor.execute('SELECT latitude, longitude FROM flight_path WHERE flight_id=? AND icao=?', (flight_index, icao))
+
+    coords = cursor.fetchall()
+    conn.close()
+
+    #Get start and landing coordinates
+    departure_coords = coords[0]
+    arrival_coords = coords[-1]
+
+    #Get airports
+    departure_airport = get_airport_by_coordinates(departure_coords[0], departure_coords[1])
+    arrival_airport = get_airport_by_coordinates(arrival_coords[0], arrival_coords[1])
+
+    # print(departure_airport)
+    # print(arrival_airport)
+
+    # Calculate the middle coordinates
+    middle_lat = sum(coord[0] for coord in coords) / len(coords)
+    middle_lon = sum(coord[1] for coord in coords) / len(coords)
+
+    flight_map = folium.Map(location=[middle_lat, middle_lon], zoom_start=6)
+
+    # Add a line between the markers to represent the flight path
+    folium.PolyLine(coords, color='red').add_to(flight_map)
+
+    # Add a marker for the airports
+
+    folium.Marker(location=[departure_coords[0], departure_coords[1]],
+                  popup=folium.Popup(f'<strong>Departure: </strong> {departure_airport[0]} - {departure_airport[1]}', show=True),
+                  icon=folium.Icon(color='blue', icon='plane', prefix='fa')).add_to(flight_map)
+    folium.Marker(location=[arrival_coords[0], arrival_coords[1]], 
+                  popup=folium.Popup(f'<strong>Arrival: </strong>{arrival_airport[0]} - {arrival_airport[1]}', show=True),
+                  icon=folium.Icon(color='green', icon='plane')).add_to(flight_map)
+    
+    # map_path = f"flight_{icao}-{flight_index}.png"
+
+    # Outputting the file as PNG in media folder
+    delay=0.5
+    output=f"flight_{icao}-{flight_index}.html"
+    tmpurl='file://{path}/{mapfile}'.format(path=os.getcwd(),mapfile=output)
+    flight_map.save(output)
+    
+    browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+    browser.get(tmpurl)
+    #Give the map tiles some time to load
+    time.sleep(delay)
+    screenshot_path = os.path.join(os.getcwd(), 'media', f'flight_{icao}-{flight_index}.png')
+    browser.save_screenshot(screenshot_path)
+    browser.quit()
+
+    return None

@@ -32,10 +32,10 @@ class Airplanes:
                 if data:
                     self.save_flight_data(data)
                     status = self.check_flight_status(icao, data)
-                    print(data)
-                    airport = get_airport_by_coordinates(data[4], data[5])
-                    airport_data = get_airport_data(airport[0])
-                    print(airport_data)
+                    #print(data)
+                    #airport = get_airport_by_coordinates(data[4], data[5])
+                    #airport_data = get_airport_data(airport[0])
+                    #print(airport_data)
                     
                     print(status)
                     if status == 0: # Ground
@@ -54,7 +54,8 @@ class Airplanes:
                     else:
                         None 
 
-            time.sleep(60)
+                
+            time.sleep(300)
 
     #Section on tracking active flight path
     def start_flight_path(self, icao, data):
