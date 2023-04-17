@@ -2,3 +2,5 @@ apiKey.txt
 __pycache__
 geckodriver.exe
 geckodriver.log
+old
+media
