@@ -1,0 +1,8 @@
+# fly.toml file generated for bundesratsjet on 2023-04-17T21:54:52+02:00
+
+app = "bundesratsjet"
+primary_region = "cdg"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+

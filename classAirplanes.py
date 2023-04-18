@@ -5,6 +5,7 @@ from apiADSBexhange import get_flight_data
 from apiTwitter import *
 from apiAirportData import *
 from plotMap import *
+import sys
 
 class Airplanes:
     
@@ -52,7 +53,7 @@ class Airplanes:
 
                 except Exception as e:
                     print(f'An error occured while processing airplane {icao}: {e}. Potentially the plane has turned off the transponder or the API is down.') 
-                                    
+            sys.stdout.flush()          
             time.sleep(600)
 
     #Section on tracking active flight path
