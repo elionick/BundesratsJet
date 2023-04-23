@@ -36,6 +36,9 @@ The project includes a simple example script that tracks the flight status of tw
 * Bug fixes
 * First successfull trial end-to-end 
 * Finished MVP
+
+### v1.6 **April 23, 2023**
+* Successfully deployed to fly.io
 ---
  
 ## ToDos (to be expanded)
@@ -48,4 +51,4 @@ The project includes a simple example script that tracks the flight status of tw
 * Somehow control how many requests I have left this month?
 * Move to online DB?
 
-* Get script running online somewhere?
+* ~~Get script running online somewhere?~~
