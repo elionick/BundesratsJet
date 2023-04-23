@@ -6,7 +6,7 @@ import os
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
-
+from selenium.webdriver import FirefoxOptions
 
 
 def plot_flight_plan(icao, flight_index):
@@ -57,20 +57,34 @@ def plot_flight_plan(icao, flight_index):
 
     # Outputting the file as PNG in media folder
 
-    try:
+    try:   
+
+        # Outputting the Folium Map as HTML file
+        print('Creating Map...')
         delay=1
-        output=f"flight_{icao}-{flight_index}.html"
-        tmpurl='file://{path}/{mapfile}'.format(path=os.getcwd(),mapfile=output)
-        flight_map.save(output)
+        output= os.path.join(os.getcwd(), 'raw-map-data', f"flight_{icao}-{flight_index}.html")
         
-        browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+        #tmpurl='file://{path}/{mapfile}'.format(path=os.getcwd(),mapfile=output)
+        flight_map.save(output)
+
+        # Saving HTML as PNG to upload to Twitter
+        print('Saving Map as PNG...')
+
+        tmpurl = 'file://' + os.path.join(os.getcwd(), 'raw-map-data', f'flight_{icao}-{flight_index}.html')
+
+        opts = FirefoxOptions()
+        opts.add_argument('--headless')
+        browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()), options=opts)
+
         browser.get(tmpurl)
+        
         #Give the map tiles some time to load
         time.sleep(delay)
-        screenshot_path = os.path.join(os.getcwd(), 'media', f'flight_{icao}-{flight_index}.png')
+        screenshot_path = os.path.join(os.getcwd(), '/media', f'flight_{icao}-{flight_index}.png')
         browser.save_screenshot(screenshot_path)
         browser.quit()
         print('Map created successfully')
+
     except Exception as e:
         print(f'An error has occured while saving the image. . Error: {e}')
 

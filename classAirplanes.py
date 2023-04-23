@@ -18,7 +18,7 @@ class Airplanes:
         self.create_flight_path_table()
 
     def create_table(self):
-        self.cursor.execute('CREATE TABLE IF NOT EXISTS flights (icao TEXT, registration TEXT, type TEXT, time INTEGER, latitude REAL, longitude REAL, altitude TEXT, groundspeed REAL)')
+        self.cursor.execute('CREATE TABLE IF NOT EXISTS flights (icao TEXT, registration TEXT, type TEXT, flight TEXT, time INTEGER, latitude REAL, longitude REAL, altitude TEXT, groundspeed REAL)')
 
     def create_flight_path_table(self):
         self.cursor.execute('CREATE TABLE IF NOT EXISTS flight_path (flight_id INTEGER, icao TEXT, time INTEGER, latitude REAL, longitude REAL)')
@@ -47,7 +47,7 @@ class Airplanes:
                         elif status == 3: # Landing
                             print(f"Airplane {icao} just landed")
                             self.save_flight_path(icao, data)
-                            self.stop_flight_path(icao)
+                            self.stop_flight_path(icao, data)
                         else:
                             pass
 
@@ -66,37 +66,40 @@ class Airplanes:
         # Save take off spot
         last_data = self.get_last_flight_data(icao)
 
-        last_timestamp = last_data[3]
-        last_latitude = last_data[4]
-        last_longitude = last_data[5]
+        last_timestamp = last_data[4]
+        last_latitude = last_data[5]
+        last_longitude = last_data[6]
         self.cursor.execute('INSERT INTO flight_path VALUES (?, ?, ?, ?, ?)', (index, icao, last_timestamp, last_latitude, last_longitude))
         
         # Save new tracking data
-        timestamp = data[3]
-        latitude = data[4]
-        longitude = data[5]
+        timestamp = data[4]
+        latitude = data[5]
+        longitude = data[6]
         self.cursor.execute('INSERT INTO flight_path VALUES (?, ?, ?, ?, ?)', (index, icao, timestamp, latitude, longitude))
         print(f'Started tracking flight path for {icao}')
         self.conn.commit()
 
     def save_flight_path(self, icao, data):
         index = self.get_last_flight_path_index(icao)
-        timestamp = data[3]
-        latitude = data[4]
-        longitude = data[5]
+        timestamp = data[4]
+        latitude = data[5]
+        longitude = data[6]
         self.cursor.execute('INSERT INTO flight_path VALUES (?, ?, ?, ?, ?)', (index, icao, timestamp, latitude, longitude))
         self.conn.commit()
         
-    def stop_flight_path(self, icao):
+    def stop_flight_path(self, icao, data):
         print(f'Stopped tracking flight path for {icao}')
 
         index = self.get_last_flight_path_index(icao)
 
+        flight_number = data[3]
+
         try:
             airports = plot_flight_plan(icao, index)
             upload_Twitter_status_with_media(icao, index, airports)
-        except:
-            print('An error has occured')
+            
+        except Exception as error:
+            print(f'An error has occured while trying to call the Twitter function: {error}')
 
     def get_last_flight_path_index(self, icao):
         self.cursor.execute('SELECT MAX(flight_id) FROM flight_path WHERE icao=?', (icao,))
@@ -111,21 +114,21 @@ class Airplanes:
         current_data = data
         last_data = self.get_last_flight_data(icao)
         if last_data:
-            print(f"Last altitude: {last_data[6]}, Current altitude: {current_data[6]}")
-            if last_data[6] == "ground" and current_data[6] == "ground":
+            print(f"Last altitude: {last_data[7]}, Current altitude: {current_data[7]}")
+            if last_data[7] == "ground" and current_data[7] == "ground":
                 return 0 # Ground
-            elif last_data[6] == "ground" and current_data[6] != "ground":
+            elif last_data[7] == "ground" and current_data[7] != "ground":
                 return 1 # Take-off
-            elif last_data[6] != "ground" and current_data[6] != "ground":
+            elif last_data[7] != "ground" and current_data[7] != "ground":
                 return 2 # In-air
-            elif last_data[6] != "ground" and current_data[6] == "ground":
+            elif last_data[7] != "ground" and current_data[7] == "ground":
                 return 3 # Landing
         else:
             print('First time tracking this airplane')
             return None
         
     def save_flight_data(self, data):
-        self.cursor.execute('INSERT INTO flights VALUES (?, ?, ?, ?, ?, ?, ?, ?)', data)
+        self.cursor.execute('INSERT INTO flights VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', data)
         self.conn.commit()
 
     def get_last_flight_data(self, icao):

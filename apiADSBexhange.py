@@ -16,6 +16,7 @@ def get_flight_data(icao):
         #print(response.json())
         data = response.json()
         registration = data['r']
+        flight = data['flight']
         type = data['t']
         latitude = data['lat']
         longitude = data['lon']
@@ -26,7 +27,7 @@ def get_flight_data(icao):
         #Testing only
         #print(icao, registration, type, time, latitude, longitude, altitude, groundspeed)
 
-        return(icao, registration, type, time, latitude, longitude, altitude, groundspeed)
+        return(icao, registration, type, flight, time, latitude, longitude, altitude, groundspeed)
     else:
         print(response.text)
         #return None
