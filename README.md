@@ -39,6 +39,9 @@ The project includes a simple example script that tracks the flight status of tw
 
 ### v1.6 **April 23, 2023**
 * Successfully deployed to fly.io
+
+### v1.7 **April 27, 2023**
+* Improved Twitter Output Readability
 ---
  
 ## ToDos (to be expanded)
