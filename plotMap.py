@@ -32,7 +32,7 @@ def plot_flight_plan(icao, flight_index):
     middle_lon = sum(coord[1] for coord in coords) / len(coords)
 
     # Set zoom_start based on number of coordinates
-    if len(coords) <= 12:
+    if len(coords) <= 10:
         zoom_start = 6
     elif len(coords) <= 18:
         zoom_start = 5

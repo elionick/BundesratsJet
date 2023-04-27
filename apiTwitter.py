@@ -30,12 +30,22 @@ def upload_Twitter_status_with_media(icao, flight_index, airports):
     api = tweepy.API(auth)
 
     try:
+        if icao == '4b7f4c':
+            status_icao = f'The Falcon 900EX has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
+        elif icao == '4b7fd4':
+            status_icao = f'The Citation Excel has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
+        else:
+            status_icao = f'Airplane {icao} has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
+    except Exception as error:
+        print(error)
+
+    try:
         print('Uploading media...')
         filename = os.path.join(os.getcwd(), '/media', f'flight_{icao}-{flight_index}.png')
         #filename = f'media/flight_{icao}-{flight_index}.png'
         upload = api.simple_upload(filename=filename)
 
         print('Tweeting...')
-        api.update_status(status=f'Airplane {icao} has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:', media_ids=[upload.media_id])
+        api.update_status(status=status_icao, media_ids=[upload.media_id])
     except Exception as error:
         print(f'An error has occured while trying to post to Twitter: {error}')
