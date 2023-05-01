@@ -29,5 +29,5 @@ def get_flight_data(icao):
 
         return(icao, registration, type, flight, time, latitude, longitude, altitude, groundspeed)
     else:
-        print(response.text)
+        print(f'ADSB response: ' + response.status_code + response.text)
         #return None
