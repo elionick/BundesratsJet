@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b93b8eb402822f0d4eabdb78ae596204 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_b93b8eb402822f0d4eabdb78ae596204" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_b93b8eb402822f0d4eabdb78ae596204 = L.map(
+                "map_b93b8eb402822f0d4eabdb78ae596204",
+                {
+                    center: [44.386432777777785, 10.343105888888891],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0ece3929d10374121b88230b739b84f0 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_b93b8eb402822f0d4eabdb78ae596204);
+        
+    
+            var poly_line_6a43981f70e06ef320840d8119bb5894 = L.polyline(
+                [[41.800438, 12.588272], [41.798035, 12.595763], [42.42622, 12.140467], [43.44223, 11.444177], [44.445923, 10.63385], [45.40291, 9.68552], [46.398926, 8.841984], [46.852826, 7.653694], [46.910387, 7.504226]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_b93b8eb402822f0d4eabdb78ae596204);
+        
+    
+            var marker_f0eb9bc97d88fffdc78245a2c29a784d = L.marker(
+                [41.800438, 12.588272],
+                {}
+            ).addTo(map_b93b8eb402822f0d4eabdb78ae596204);
+        
+    
+            var icon_2426edccb06752e66162b6170bfc60c8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plane", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_f0eb9bc97d88fffdc78245a2c29a784d.setIcon(icon_2426edccb06752e66162b6170bfc60c8);
+        
+    
+        var popup_05a79b4a33c708f9b221c7c610cdd454 = L.popup({"autoClose": false, "maxWidth": 500});
+
+        
+            
+                var html_04fb33937f23be8a07f9660dcb223d2c = $(`<div id="html_04fb33937f23be8a07f9660dcb223d2c" style="width: 100.0%; height: 100.0%;"><strong>Departure: </strong> LIRA - Ciampino–G. B. Pastine International Airport</div>`)[0];
+                popup_05a79b4a33c708f9b221c7c610cdd454.setContent(html_04fb33937f23be8a07f9660dcb223d2c);
+            
+        
+
+        marker_f0eb9bc97d88fffdc78245a2c29a784d.bindPopup(popup_05a79b4a33c708f9b221c7c610cdd454)
+        .openPopup();
+
+        
+    
+    
+            var marker_70107969e29cfd8fe6fb1b92bb9dbd06 = L.marker(
+                [46.910387, 7.504226],
+                {}
+            ).addTo(map_b93b8eb402822f0d4eabdb78ae596204);
+        
+    
+            var icon_719eadfee9a5bcaf38fef90950f6cf4c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plane", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_70107969e29cfd8fe6fb1b92bb9dbd06.setIcon(icon_719eadfee9a5bcaf38fef90950f6cf4c);
+        
+    
+        var popup_b382ac159fc0825355f642cd758b6738 = L.popup({"autoClose": false, "maxWidth": 400});
+
+        
+            
+                var html_9b93838dfd96d2c836b0bdf8584d8ebd = $(`<div id="html_9b93838dfd96d2c836b0bdf8584d8ebd" style="width: 100.0%; height: 100.0%;"><strong>Arrival: </strong>LSZB - Bern-Belp Airport</div>`)[0];
+                popup_b382ac159fc0825355f642cd758b6738.setContent(html_9b93838dfd96d2c836b0bdf8584d8ebd);
+            
+        
+
+        marker_70107969e29cfd8fe6fb1b92bb9dbd06.bindPopup(popup_b382ac159fc0825355f642cd758b6738)
+        .openPopup();
+
+        
+    
+</script>
+</html>
