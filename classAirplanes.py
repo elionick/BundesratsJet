@@ -6,6 +6,7 @@ from apiTwitter import *
 from apiAirportData import *
 from plotMap import *
 import sys
+import threading
 
 class Airplanes:
     
@@ -96,7 +97,9 @@ class Airplanes:
 
         try:
             airports = plot_flight_plan(icao, index)
-            upload_Twitter_status_with_media(icao, index, airports)
+            t = threading.Thread(target=upload_Twitter_status_with_media, args=(icao, index, airports))
+            t.start()
+            #upload_Twitter_status_with_media(icao, index, airports)
             
         except Exception as error:
             print(f'An error has occured while trying to call the Twitter function: {error}')
