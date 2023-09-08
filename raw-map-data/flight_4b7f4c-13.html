@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_923ad7a69aaabcf45894b59eb6b6daa7 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_923ad7a69aaabcf45894b59eb6b6daa7" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_923ad7a69aaabcf45894b59eb6b6daa7 = L.map(
+                "map_923ad7a69aaabcf45894b59eb6b6daa7",
+                {
+                    center: [47.26819975, 7.5026975],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_6be284a1fab77f5453c02821b9b6c247 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_923ad7a69aaabcf45894b59eb6b6daa7);
+        
+    
+            var poly_line_03b90a52262f539e7c107397dd532bbf = L.polyline(
+                [[47.591949, 7.53602], [47.579925, 7.470914], [46.990677, 7.499542], [46.910248, 7.504314]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_923ad7a69aaabcf45894b59eb6b6daa7);
+        
+    
+            var marker_91f99bbb10cb7096b946e22a54949871 = L.marker(
+                [47.591949, 7.53602],
+                {}
+            ).addTo(map_923ad7a69aaabcf45894b59eb6b6daa7);
+        
+    
+            var icon_12ec6a876f45a61f50d905f2df84dfbe = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plane", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_91f99bbb10cb7096b946e22a54949871.setIcon(icon_12ec6a876f45a61f50d905f2df84dfbe);
+        
+    
+        var popup_f90a5bf942363cadcdaa0d63c9b9b2a3 = L.popup({"autoClose": false, "maxWidth": 500});
+
+        
+            
+                var html_188d8c1d9fc1e78ec16d30085c3817ff = $(`<div id="html_188d8c1d9fc1e78ec16d30085c3817ff" style="width: 100.0%; height: 100.0%;"><strong>Departure: </strong> LFSB - EuroAirport Basel-Mulhouse-Freiburg Airport</div>`)[0];
+                popup_f90a5bf942363cadcdaa0d63c9b9b2a3.setContent(html_188d8c1d9fc1e78ec16d30085c3817ff);
+            
+        
+
+        marker_91f99bbb10cb7096b946e22a54949871.bindPopup(popup_f90a5bf942363cadcdaa0d63c9b9b2a3)
+        .openPopup();
+
+        
+    
+    
+            var marker_add103b3ce390113bdd4dfaef8200d91 = L.marker(
+                [46.910248, 7.504314],
+                {}
+            ).addTo(map_923ad7a69aaabcf45894b59eb6b6daa7);
+        
+    
+            var icon_6087894491da65f28b70513e66b88d7d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plane", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_add103b3ce390113bdd4dfaef8200d91.setIcon(icon_6087894491da65f28b70513e66b88d7d);
+        
+    
+        var popup_0350c8515a211a8c426b02716d33350b = L.popup({"autoClose": false, "maxWidth": 400});
+
+        
+            
+                var html_2e9d1cedc9b1424c78ee81e61172ce31 = $(`<div id="html_2e9d1cedc9b1424c78ee81e61172ce31" style="width: 100.0%; height: 100.0%;"><strong>Arrival: </strong>LSZB - Bern-Belp Airport</div>`)[0];
+                popup_0350c8515a211a8c426b02716d33350b.setContent(html_2e9d1cedc9b1424c78ee81e61172ce31);
+            
+        
+
+        marker_add103b3ce390113bdd4dfaef8200d91.bindPopup(popup_0350c8515a211a8c426b02716d33350b)
+        .openPopup();
+
+        
+    
+</script>
+</html>

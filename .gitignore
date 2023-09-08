@@ -6,4 +6,9 @@ old
 media
 id_elio
 id_elio-cert.pub
+<<<<<<< HEAD
 raw-map-data
+=======
+APIKeysNew.txt
+test.py
+>>>>>>> 000c246995f3e2be28a6304f3cff8a7570f25a3d

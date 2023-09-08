@@ -2,9 +2,11 @@ from itertools import count
 from os import access
 import tweepy
 from env_vars import *
+import time
 
 def update_Twitter_status(status):
     # Authenticate to Twitter
+
     auth = tweepy.OAuthHandler(apiTwitter_access_key, apiTwitter_access_secret)
     auth.set_access_token(api_Twitter_consumer_key, apiTwitter_consumer_secret)
 
@@ -17,6 +19,7 @@ def update_Twitter_status(status):
 
 def upload_Twitter_status_with_media(icao, flight_index, airports):
 
+    time.sleep(86400)
     api_key = apiTwitter_access_key
     api_secret = apiTwitter_access_secret
     #bearer_token = apiTwitter_bearer_token
@@ -31,11 +34,11 @@ def upload_Twitter_status_with_media(icao, flight_index, airports):
 
     try:
         if icao == '4b7f4c':
-            status_icao = f'The Falcon 900EX has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
+            status_icao = f'Yesterday, the Falcon 900EX has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
         elif icao == '4b7fd4':
-            status_icao = f'The Citation Excel has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
+            status_icao = f'Yesterday, the Citation Excel has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
         else:
-            status_icao = f'Airplane {icao} has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
+            status_icao = f'Yesterday, airplane {icao} has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
     except Exception as error:
         print(error)
 

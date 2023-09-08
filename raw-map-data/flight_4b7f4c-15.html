@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_736a54c7435952d9238e6a354064b4ac {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_736a54c7435952d9238e6a354064b4ac" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_736a54c7435952d9238e6a354064b4ac = L.map(
+                "map_736a54c7435952d9238e6a354064b4ac",
+                {
+                    center: [46.89488466666666, 7.303686],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_f5d80d79fbe68325a9ff0cc90290b568 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_736a54c7435952d9238e6a354064b4ac);
+        
+    
+            var poly_line_0f974ec8b38d7266e2582db5a0156653 = L.polyline(
+                [[46.848587, 6.923681], [46.925773, 7.483028], [46.910294, 7.504349]],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_736a54c7435952d9238e6a354064b4ac);
+        
+    
+            var marker_203cd9649ca9065338b5b77d898f84a0 = L.marker(
+                [46.848587, 6.923681],
+                {}
+            ).addTo(map_736a54c7435952d9238e6a354064b4ac);
+        
+    
+            var icon_467dcdacd4855f98e856154d6d09000b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plane", "iconColor": "white", "markerColor": "blue", "prefix": "fa"}
+            );
+            marker_203cd9649ca9065338b5b77d898f84a0.setIcon(icon_467dcdacd4855f98e856154d6d09000b);
+        
+    
+        var popup_3ca621b501c0dba0fa8f20f64fc15006 = L.popup({"autoClose": false, "maxWidth": 500});
+
+        
+            
+                var html_79c4a9ae4cafd45c113b025abc3853bf = $(`<div id="html_79c4a9ae4cafd45c113b025abc3853bf" style="width: 100.0%; height: 100.0%;"><strong>Departure: </strong> LSMP - Payerne Air Base</div>`)[0];
+                popup_3ca621b501c0dba0fa8f20f64fc15006.setContent(html_79c4a9ae4cafd45c113b025abc3853bf);
+            
+        
+
+        marker_203cd9649ca9065338b5b77d898f84a0.bindPopup(popup_3ca621b501c0dba0fa8f20f64fc15006)
+        .openPopup();
+
+        
+    
+    
+            var marker_fb5ba5db1e0a6723cc758762432223e1 = L.marker(
+                [46.910294, 7.504349],
+                {}
+            ).addTo(map_736a54c7435952d9238e6a354064b4ac);
+        
+    
+            var icon_2bba2ae349558320ac40764abb93acb6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "plane", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_fb5ba5db1e0a6723cc758762432223e1.setIcon(icon_2bba2ae349558320ac40764abb93acb6);
+        
+    
+        var popup_c5638e9126ccc60425eb22dec7ccf292 = L.popup({"autoClose": false, "maxWidth": 400});
+
+        
+            
+                var html_9d1bc9f51045216e01e5bcaa86ca7ded = $(`<div id="html_9d1bc9f51045216e01e5bcaa86ca7ded" style="width: 100.0%; height: 100.0%;"><strong>Arrival: </strong>LSZB - Bern-Belp Airport</div>`)[0];
+                popup_c5638e9126ccc60425eb22dec7ccf292.setContent(html_9d1bc9f51045216e01e5bcaa86ca7ded);
+            
+        
+
+        marker_fb5ba5db1e0a6723cc758762432223e1.bindPopup(popup_c5638e9126ccc60425eb22dec7ccf292)
+        .openPopup();
+
+        
+    
+</script>
+</html>
