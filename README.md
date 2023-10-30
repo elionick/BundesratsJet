@@ -52,6 +52,6 @@ The project includes a simple example script that tracks the flight status of tw
 * ~~Include a map?~~
 
 * Somehow control how many requests I have left this month?
-* Move to online DB?
+* ~~Move to online DB?~~
 
 * ~~Get script running online somewhere?~~
