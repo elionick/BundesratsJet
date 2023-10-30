@@ -13,15 +13,15 @@ def get_flight_data(icao):
 
     if response.status_code == 200:
 
-        #print(response.json())
         data = response.json()
-        registration = data['r']
-        flight = data['flight']
-        type = data['t']
-        latitude = data['lat']
-        longitude = data['lon']
-        altitude = data['alt_baro']
-        groundspeed = data['gs']
+        registration = data.get('r', None)
+        flight = data.get('flight', None)
+        type = data.get('t', None)
+        latitude = data.get('lat', None)
+        longitude = data.get('lon', None)
+        altitude = data.get('alt_baro', None)
+        groundspeed = data.get('gs', 0)
+
         time = int(datetime.now().timestamp())
 
         #Testing only
