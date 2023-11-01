@@ -41,7 +41,8 @@ Before you begin, ensure you have met the following requirements:
 To start tracking flights, run the main script:
 
 ```bash
-python main.py ```
+python main.py
+```
 
 
 ## License
