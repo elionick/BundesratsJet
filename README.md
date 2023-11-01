@@ -5,7 +5,7 @@
 This Python project tracks the flights of the two jets owned by the Swiss Federal Council. Utilizing the ADSBExchange API, the program monitors the ICAO codes of the jets, logging their GPS coordinates when in flight, and compiling the data to generate comprehensive flight reports. These reports, including details like departure and arrival airports, are then shared on Twitter with a 24-hour delay in compliance with the latest Twitter rules. All the flight data is saved in an SQL database for historical analysis and backup.
 
 <p align="center">
-    <a href="https://twitter.com/bundesratsjet/status/1680882165486178305">
+    <a href="[https://twitter.com/bundesratsjet/status/1680882165486178305](https://twitter.com/bundesratsjet/status/1679474558561124354)">
         <img src="media/example_tweet.png" alt="Example Tweet">
     </a>
 </p>
