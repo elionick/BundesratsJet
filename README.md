@@ -37,7 +37,7 @@ Before you begin, ensure you have met the following requirements:
 
 1. **Clone the Repository**: `git clone https://github.com/elionick/BundesratsJet`
 2. **Install Dependencies**: `pip install -r requirements.txt`
-3. **Configure API Keys**: Add your ADSBExchange and Twitter API keys to the `.env` file.
+3. **Configure API Keys**: Add your ADSBExchange and Twitter API keys to the `env_vars.py` file.
 4. **Setup Database**: Ensure your SQL database is setup and configure the connection in the configuration file.
 
 ## Usage
