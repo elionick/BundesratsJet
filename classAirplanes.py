@@ -94,10 +94,11 @@ class Airplanes:
         index = self.get_last_flight_path_index(icao)
 
         flight_number = data[3]
+        date = data[4]
 
         try:
             airports = plot_flight_plan(icao, index)
-            t = threading.Thread(target=upload_Twitter_status_with_media, args=(icao, index, airports))
+            t = threading.Thread(target=upload_Twitter_status_with_media, args=(icao, date, index, airports))
             t.start()
             #upload_Twitter_status_with_media(icao, index, airports)
             
