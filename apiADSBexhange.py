@@ -19,7 +19,7 @@ def get_flight_data(icao):
         type = data.get('t', None)
         latitude = data.get('lat', None)
         longitude = data.get('lon', None)
-        altitude = data.get('alt_baro', None)
+        altitude = data.get('alt_baro', 'ground')
         groundspeed = data.get('gs', 0)
 
         time = int(datetime.now().timestamp())
