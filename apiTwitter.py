@@ -44,7 +44,7 @@ def upload_Twitter_status_with_media(icao, timestamp, flight_index, airports):
         elif icao == '4b7fd4':
             status_icao = f'On {date}, the Citation Excel has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
         else:
-            status_icao = f'On {date}, airplane {icao} has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
+            status_icao = f'TEST: On {date}, airplane {icao} has flown from {airports[0][0]}, {airports[0][1]} to {airports[1][0]}, {airports[1][1]} using the following route:'
     except Exception as error:
         print(error)
 
